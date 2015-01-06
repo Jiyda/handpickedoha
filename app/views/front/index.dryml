@@ -1,0 +1,37 @@
+<page title="Home">
+
+  <body: class="front-page"/>
+
+  <content:>
+    <header class="content-header hero-unit">
+      
+      <section class="welcome-message text-center">
+      <h1>Welcome to <app-name/></h1>
+      <h3>Find Cool Services in Doha</h3>
+ </section>
+    </header>
+
+      <section class="content-body">
+     <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+        <collection with="&Service.all"/>
+
+        </div>
+      </div>
+       
+
+        <% if User.count == 0 -%>
+          <h3 style="margin-top: 20px;">There are no user accounts - please provide the details of the site administrator</h3>
+          <form with="&this || User.new" without-cancel>
+            <field-list: fields="name, email_address, password, password_confirmation"/>
+            <submit: label="Register Administrator"/>
+          </form>
+        <% end -%>
+    </section>
+      
+
+
+    
+  </content:>
+
+</page>

@@ -1,0 +1,231 @@
+<!-- Global taglib - these are the tags for your front / main site -->
+
+<include gem="hobo_rapid"/>
+
+<include gem='hobo_jquery'/>
+
+<include gem='hobo_bootstrap'/>
+
+<include gem='hobo_jquery_ui'/>
+
+<include gem='hobo_bootstrap_ui'/>
+
+
+<include src="taglibs/auto/rapid/cards"/>
+<include src="taglibs/auto/rapid/pages"/>
+<include src="taglibs/auto/rapid/forms"/>
+
+<include src="application"/>
+
+
+ 
+
+
+
+<def tag="card" for="Service">
+      <a href="services/#{this.id}">
+            <div class="col-xs-12 col-sm-6 col-md-3 text-center homepage-tile" style="padding: 0px">
+                <img src="#{this.imageurl}" alt="#{this.name}"/>
+                <div class="tile-overlay text-center">
+                    <span class="tile-title"><name/></span>
+                </div>
+            </div>
+        </a>
+</def>
+
+
+
+
+<def tag="card" for="Provider">
+  <card class="provider" param="default" merge>
+    <header: param>
+      
+    </header:>
+    <body: param>
+    <div class="text-center" >
+           <div class="tile-overlay text-center">
+                    <a><name/></a>
+                </div>
+                <img src="#{this.imageurl}" alt="#{this.name}" width="300px"/>
+                <div class="tile-overlay text-center">
+                <view:description param="description"/>
+                </div>
+      </div>
+      
+    </body:>
+  </card>
+</def>
+
+
+
+
+
+
+<def tag="show-page" for="Service">
+  <page merge title="#{ht 'service.show.title', :default=>['Service'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page service" param/>
+
+    
+    <content-body: param>
+      <!-- <div class="text-center">
+      <view:description param="description" />
+      </div>
+      <section param="collection-section">
+
+        <collection:providers param/>
+
+        <section param="add-to-collection" if="&can_create?(@service.providers)">
+          <h3 param="add-form-heading">
+            <ht key="provider.collection.add_form_heading" count="1">
+              Add a Provider
+            </ht>
+          </h3>
+          <form with="&@provider || new_for_current_user(@service.providers)" owner="service" without-cancel param>
+            <field-list: skip="service"/>
+            <submit: label="#{ht 'provider.actions.add', :default=>['Add'] }"/>
+          </form>
+        </section>
+      </section> -->
+
+      <div class="banerr">
+                <div class="container-main">
+                    <div class="banner-intro">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-3 mobiview">
+                                <div class="img-pro">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-9 mobiview">
+                                <div class="contet">
+                                    <h1>
+                                        What are the best <%= this.name %> in Doha ?
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--banerrclose-->
+            <div class="container-main">
+                <div class="row mk00">
+                    <div class="col-xs-12">
+                        <div class="headdig-ilm">
+                            <p>
+                                Top Ranked Places
+                            </p>
+                        </div>
+                         <% counter = 1 %>
+                         <% this.providers.each do |provider| %>
+                           
+                       
+                            <div class="boxes-slid00">
+                                <div class="img-box00">
+                                     <img src="#{provider.imageurl}" alt="#{provider.name}" /> <span><%= counter%> </span>
+                                     <% counter += 1%>
+                                </div>
+                                <div class="middle-box-img">
+                                    <h3>
+                                        <%= provider.name %>
+                                    </h3>
+                                    <p>
+                                        <%= provider.description %> Some cool description about this supe cool shop.
+                                    </p>
+                                </div>
+                                <div class="navigatorrss">
+                                    <if test="&logged_in?">
+                                      <a href="#{like_provider_path(provider)}">                                        
+                                        <button type="button" class="btn btn-default custujlo"><i class="fa fa-angle-up"></i></button>
+                                      </a>
+                                    </if>
+                                    <unless test="&logged_in?">
+                                      <a href="#myModal" role="button" class="btn" data-toggle="modal" style="width: 77px;"><button type="button" id="popup" class="btn btn-default custujlo"><i class="fa fa-angle-up"></i></button></a>
+                                    </unless>
+                                    <p><%= provider.get_upvotes.size %></p>
+                                    <if test="&logged_in?">
+                                      <a href="#{dislike_provider_path(provider)}"><button type="button" class="btn btn-default custujlo"><i class="fa fa-angle-down"></i></button></a>
+                                    </if>
+                                    <unless test="&logged_in?"> 
+                                      <a href="#myModal" role="button" class="btn" data-toggle="modal" style="width: 77px;"><button type="button" id="popup" class="btn btn-default custujlo"><i class="fa fa-angle-down"></i></button></a>
+                                    </unless>
+                                </div>
+                              
+                            </div>
+                        <% end %>
+
+                    </div>
+                </div>
+            </div><!--Display section Container-maincloe-->
+            <div class="right-div">
+                <div class="headdig-ilm">
+                    <p>
+                        More CrowdRecs in San Francisco
+                    </p>
+                </div>
+                <div class="boxes-slid00">
+                    <div class="img-boxes-side">
+                        <img src="/assets/media_006.jpg" alt="..." />
+                    </div>
+                    <div class="description-d">
+                        <h4>
+                            <a href="#">What are the best places for seafood in SF?</a>
+                        </h4>
+                        <ul class="listind">
+                            <li>
+                                <a href="#">Fitness &amp; Outdoors</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="boxes-slid00">
+                    <div class="img-boxes-side">
+                        <img src="/assets/img004.jpg" alt="..." />
+                    </div>
+                    <div class="description-d">
+                        <h4>
+                            <a href="#">What are the best places for seafood in SF?</a>
+                        </h4>
+                        <ul class="listind">
+                            <li>
+                                <a href="#">Fitness &amp; Outdoors</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="boxes-slid00">
+                    <div class="img-boxes-side">
+                        <img src="/assets/img008.jpg" alt="..." />
+                    </div>
+                    <div class="description-d">
+                        <h4>
+                            <a href="#">What are the best places for seafood in SF?</a>
+                        </h4>
+                        <ul class="listind">
+                            <li>
+                                <a href="#">Fitness &amp; Outdoors</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="boxes-slid00">
+                    <a href="#"><img src="/assets/ad%20banner.png" alt="..." /></a>
+                </div>
+            </div>
+
+
+      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">Alert!</h3>
+        </div>
+        <div class="modal-body">
+          <p>You Need To Sign In First</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary">OK</button>
+        </div>
+      </div>
+    </content-body:>
+  </page>
+</def>
