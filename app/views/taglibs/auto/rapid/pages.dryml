@@ -199,7 +199,6 @@
     <body: class="show-page provider" param/>
 
     <content-header: param>
-      <a:service param="parent-link">&laquo; <ht key="provider.actions.back_to_parent" parent="Service" name="&this">Back to <name/></ht></a:service>
       <h2 param="heading">
         <ht key="provider.show.heading" name="#{name(:no_wrapper => true)}">
           Provider <name/>
@@ -217,7 +216,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="website, pricerange, rating, imageurl" param/>
+      <field-list fields="website, pricerange, rating, imageurl, service" param/>
     </content-body:>
 
   </page>
