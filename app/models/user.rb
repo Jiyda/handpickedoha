@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   hobo_user_model # Don't put anything above this
+  has_many :votes ,:class_name=>"Vote",:foreign_key => :voter_id
 
   fields do
     name          :string, :required, :unique

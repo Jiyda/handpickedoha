@@ -135,16 +135,18 @@
                                 </div>
                                 <div class="navigatorrss">
                                     <if test="&logged_in?">
-                                      <a href="#{like_provider_path(provider)}">                                        
-                                        <button type="button" class="btn btn-default custujlo"><i class="fa fa-angle-up"></i></button>
+                                      <a href="#{up_down_vote_provider_path(provider)}" class="up_down_vote">                                        
+                                        <button type="button" data="#{provider.id}" class="btn btn-default custujlo"><i class="fa fa-angle-up"></i></button>
                                       </a>
                                     </if>
                                     <unless test="&logged_in?">
                                       <a href="#myModal" role="button" class="btn" data-toggle="modal" style="width: 77px;"><button type="button" id="popup" class="btn btn-default custujlo"><i class="fa fa-angle-up"></i></button></a>
                                     </unless>
-                                    <p><%= provider.get_upvotes.size %></p>
+                                    <p id="vote_count"><%= provider.get_upvotes.size %></p>
                                     <if test="&logged_in?">
-                                      <a href="#{dislike_provider_path(provider)}"><button type="button" class="btn btn-default custujlo"><i class="fa fa-angle-down"></i></button></a>
+                                      <a href="#{up_down_vote_provider_path(provider)}" class="up_down_vote">
+                                        <button type="button"  data="#{provider.id}" class="btn btn-default custujlo"><i class="fa fa-angle-down"></i></button>
+                                      </a>
                                     </if>
                                     <unless test="&logged_in?"> 
                                       <a href="#myModal" role="button" class="btn" data-toggle="modal" style="width: 77px;"><button type="button" id="popup" class="btn btn-default custujlo"><i class="fa fa-angle-down"></i></button></a>
@@ -214,7 +216,7 @@
             </div>
 
 
-      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog  " aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           <h3 id="myModalLabel">Alert!</h3>
@@ -226,6 +228,18 @@
           <button class="btn btn-primary">OK</button>
         </div>
       </div>
+
+      <script>
+        $(document).ready(function(){
+          $(".up_down_vote").click(function(event){
+            event.preventDefault();
+            id = $(".up_down_vote").find('button').attr('data')
+            $.get( "/providers/"+id+"/up_down_vote");
+          });
+        });
+      </script>
+
+
     </content-body:>
   </page>
 </def>

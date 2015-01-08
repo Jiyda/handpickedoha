@@ -2,6 +2,8 @@ class Provider < ActiveRecord::Base
   acts_as_votable
   hobo_model # Don't put anything above this
 
+  has_many :votes, :as => :votable
+
 
   fields do
     name        :string, :required

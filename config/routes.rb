@@ -6,11 +6,11 @@ Handpickedoha::Application.routes.draw do
   get 'users/:id/activate_from_email/:key' => 'users#activate', :as => 'activate_from_email'
   post 'search' => 'front#search', :as => 'site_search_post'
   get 'search' => 'front#search', :as => 'site_search'
+  get 'users/my_favorites' => 'users#my_favorites', :as => 'my_favorites'
 
   resources :providers do
     member do
-      get "like", to: "providers#upvote"
-      get "dislike", to: "providers#downvote"
+      get "up_down_vote", to: "providers#up_down_vote"
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
