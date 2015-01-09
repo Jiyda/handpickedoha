@@ -199,6 +199,7 @@
     <body: class="show-page provider" param/>
 
     <content-header: param>
+      <a:service param="parent-link">&laquo; <ht key="provider.actions.back_to_parent" parent="Service" name="&this">Back to <name/></ht></a:service>
       <h2 param="heading">
         <ht key="provider.show.heading" name="#{name(:no_wrapper => true)}">
           Provider <name/>
@@ -216,7 +217,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="service" param/>
+      <field-list fields="website, pricerange, rating, imageurl" param/>
     </content-body:>
 
   </page>
@@ -333,6 +334,7 @@
 
     <content-body: param>
       <view:description param="description" />
+      <field-list fields="imageurl" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="provider.collection.heading" count="&this.providers.count" >
@@ -459,7 +461,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="administrator" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -469,6 +471,7 @@
     </content-header:>
 
     <content-body: param>
+      <field-list fields="email_address, state" param/>
     </content-body:>
 
   </page>
@@ -539,4 +542,5 @@
 
   </page>
 </def>
+
 

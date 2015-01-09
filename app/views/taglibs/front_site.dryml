@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="navigatorrss">
                                     <if test="&logged_in?">
-                                      <a href="#{up_down_vote_provider_path(provider)}" class="up_down_vote">                                        
+                                     <a href="#{like_provider_path(provider)}" class="like">                                        
                                         <button type="button" data="#{provider.id}" class="btn btn-default custujlo"><i class="fa fa-angle-up"></i></button>
                                       </a>
                                     </if>
@@ -144,7 +144,7 @@
                                     </unless>
                                     <p id="vote_count"><%= provider.get_upvotes.size %></p>
                                     <if test="&logged_in?">
-                                      <a href="#{up_down_vote_provider_path(provider)}" class="up_down_vote">
+                                      <a href="#{dislike_provider_path(provider)}" class="dislike">
                                         <button type="button"  data="#{provider.id}" class="btn btn-default custujlo"><i class="fa fa-angle-down"></i></button>
                                       </a>
                                     </if>
@@ -231,10 +231,15 @@
 
       <script>
         $(document).ready(function(){
-          $(".up_down_vote").click(function(event){
+          $(".like").click(function(event){
             event.preventDefault();
-            id = $(".up_down_vote").find('button').attr('data')
-            $.get( "/providers/"+id+"/up_down_vote");
+            id = $(".like").find('button').attr('data')
+            $.get( "/providers/"+id+"/like");
+          });
+          $(".dislike").click(function(event){
+            event.preventDefault();
+            id = $(".dislike").find('button').attr('data')
+            $.get( "/providers/"+id+"/dislike");
           });
         });
       </script>

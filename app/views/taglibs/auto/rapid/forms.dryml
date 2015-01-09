@@ -4,7 +4,7 @@
 <def tag="form" for="Category">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="" param/>
+    <field-list fields="name" param/>
     <div param="actions">
       <submit label="#{ht 'category.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -16,7 +16,7 @@
 <def tag="form" for="Provider">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="service" param/>
+    <field-list fields="name, description, website, pricerange, rating, imageurl, service" param/>
     <div param="actions">
       <submit label="#{ht 'provider.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -28,7 +28,7 @@
 <def tag="form" for="Service">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="category" param/>
+    <field-list fields="name, description, imageurl, category" param/>
     <div param="actions">
       <submit label="#{ht 'service.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -40,7 +40,7 @@
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="" param/>
+    <field-list fields="name, email_address, administrator, state" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -69,3 +69,4 @@
     </div>
   </form>
 </def>
+

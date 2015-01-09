@@ -11,6 +11,8 @@ Handpickedoha::Application.routes.draw do
   resources :providers do
     member do
       get "up_down_vote", to: "providers#up_down_vote"
+      get "like", to: "providers#upvote"
+      get "dislike", to: "providers#downvote"
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
