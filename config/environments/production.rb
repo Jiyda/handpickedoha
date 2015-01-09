@@ -1,5 +1,8 @@
 Handpickedoha::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  # Hobo: tell ActiveReload about dryml
+  config.watchable_dirs[File.join(config.root, 'app/views')] = ['dryml']
+  
   config.hobo.read_only_file_system = true
   # Code is not reloaded between requests.
   config.cache_classes = true
