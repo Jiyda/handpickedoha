@@ -42,7 +42,7 @@ end
 
 gem "thin"
 
-gem 'acts_as_votable'
+# gem 'acts_as_votable'
 
 gem "font-awesome-rails"
 

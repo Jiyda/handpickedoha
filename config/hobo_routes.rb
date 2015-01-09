@@ -5,10 +5,6 @@
 Handpickedoha::Application.routes.draw do
 
 
-  # Resource routes for controller services
-  resources :services
-
-
   # Resource routes for controller users
   resources :users, :only => [:edit, :show, :create, :update, :destroy] do
     collection do
@@ -32,6 +28,10 @@ Handpickedoha::Application.routes.draw do
 
   # Resource routes for controller categories
   resources :categories
+
+
+  # Resource routes for controller services
+  resources :services
 
 
   # Resource routes for controller providers
